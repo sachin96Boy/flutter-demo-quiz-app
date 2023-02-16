@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:demo_app/question.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,11 +13,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+  var _questionIndex = 0;
 
   void answerChoosen() {
     setState(() {
-      questionIndex = questionIndex + 1;
+      _questionIndex = _questionIndex + 1;
     });
     print("answer Given");
   }
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
             title: const Text("Dummy Quiz App"),
           ),
           body: Column(children: [
-            Text(quetions[questionIndex]),
+            Question(questionText: quetions[_questionIndex]),
             ElevatedButton(
               onPressed: answerChoosen,
               child: const Text("Answer 1"),
