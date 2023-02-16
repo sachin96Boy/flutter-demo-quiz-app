@@ -6,10 +6,17 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  void answerChoosen() {
+    print("answer Given");
+  }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var quetions = [
+      "What's your favourite Colour",
+      "What's your favourite animal?"
+    ];
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -28,19 +35,19 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: const Text("Dummy Quiz App"),
           ),
-          body: Column(children: const [
-            Text("The Questions"),
+          body: Column(children: [
+            const Text("The Questions"),
             ElevatedButton(
-              onPressed: null,
-              child: Text("Answer 1"),
+              onPressed: answerChoosen,
+              child: const Text("Answer 1"),
             ),
             ElevatedButton(
-              onPressed: null,
-              child: Text("Answer 2"),
+              onPressed: answerChoosen,
+              child: const Text("Answer 2"),
             ),
             ElevatedButton(
-              onPressed: null,
-              child: Text("Answer 3"),
+              onPressed: answerChoosen,
+              child: const Text("Answer 3"),
             ),
           ]),
         ));
