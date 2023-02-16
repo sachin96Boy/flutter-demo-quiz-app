@@ -1,3 +1,4 @@
+import 'package:demo_app/answer.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_app/question.dart';
 
@@ -49,18 +50,23 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Column(children: [
             Question(questionText: quetions[_questionIndex]),
-            ElevatedButton(
-              onPressed: answerChoosen,
-              child: const Text("Answer 1"),
-            ),
-            ElevatedButton(
-              onPressed: answerChoosen,
-              child: const Text("Answer 2"),
-            ),
-            ElevatedButton(
-              onPressed: answerChoosen,
-              child: const Text("Answer 3"),
-            ),
+            // comment out old buttons
+            // ElevatedButton(
+            //   onPressed: answerChoosen,
+            //   child: const Text("Answer 1"),
+            // ),
+            // ElevatedButton(
+            //   onPressed: answerChoosen,
+            //   child: const Text("Answer 2"),
+            // ),
+            // ElevatedButton(
+            //   onPressed: answerChoosen,
+            //   child: const Text("Answer 3"),
+            // ),
+            // // new buttons
+            Answer(selectHandler: answerChoosen),
+            Answer(selectHandler: answerChoosen),
+            Answer(selectHandler: answerChoosen),
           ]),
         ));
   }
