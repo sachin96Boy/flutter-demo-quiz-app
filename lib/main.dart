@@ -27,8 +27,23 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     var quetions = [
-      "What's your favourite Colour",
-      "What's your favourite animal?"
+      {
+        'questionText': "What's your favourite Colour?",
+        'answer': ['black', 'red', 'green', 'white']
+      },
+      {
+        'questionText': "What's yourFavourite Animal?",
+        'answer': ['Rabbit', 'snake', 'Elephant', 'lion']
+      },
+      {
+        'questionText': "What's your favourite Game",
+        'answer': [
+          'Assassins Creed',
+          'Call of Duty',
+          'Hitman',
+          'Grand Theft Auto'
+        ]
+      },
     ];
     return MaterialApp(
         title: 'Flutter Demo',
@@ -49,7 +64,9 @@ class _MyAppState extends State<MyApp> {
             title: const Text("Dummy Quiz App"),
           ),
           body: Column(children: [
-            Question(questionText: quetions[_questionIndex]),
+            Question(
+                questionText:
+                    quetions[_questionIndex]['questionText'].toString()),
             // comment out old buttons
             // ElevatedButton(
             //   onPressed: answerChoosen,
@@ -64,9 +81,12 @@ class _MyAppState extends State<MyApp> {
             //   child: const Text("Answer 3"),
             // ),
             // // new buttons
-            Answer(selectHandler: answerChoosen),
-            Answer(selectHandler: answerChoosen),
-            Answer(selectHandler: answerChoosen),
+            ...(quetions[_questionIndex]['answer'] as List<String>)
+                .map((e) => Answer(
+                      selectHandler: answerChoosen,
+                      answerText: e.toString(),
+                    ))
+                .toList()
           ]),
         ));
   }
