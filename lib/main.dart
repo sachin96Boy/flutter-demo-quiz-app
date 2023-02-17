@@ -1,4 +1,6 @@
 import 'package:demo_app/answer.dart';
+import 'package:demo_app/quiz.dart';
+import 'package:demo_app/result.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_app/question.dart';
 
@@ -14,7 +16,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var quetions = [
+  final _quetions = [
     {
       'questionText': "What's your favourite Colour?",
       'answer': ['black', 'red', 'green', 'white']
@@ -35,7 +37,7 @@ class _MyAppState extends State<MyApp> {
   ];
   var _questionIndex = 0;
 
-  void answerChoosen() {
+  void _answerChoosen() {
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
@@ -63,37 +65,12 @@ class _MyAppState extends State<MyApp> {
           appBar: AppBar(
             title: const Text("Dummy Quiz App"),
           ),
-          body: _questionIndex < quetions.length
-              ? Column(children: [
-                  Question(
-                      questionText:
-                          quetions[_questionIndex]['questionText'].toString()),
-                  // comment out old buttons
-                  // ElevatedButton(
-                  //   onPressed: answerChoosen,
-                  //   child: const Text("Answer 1"),
-                  // ),
-                  // ElevatedButton(
-                  //   onPressed: answerChoosen,
-                  //   child: const Text("Answer 2"),
-                  // ),
-                  // ElevatedButton(
-                  //   onPressed: answerChoosen,
-                  //   child: const Text("Answer 3"),
-                  // ),
-                  // // new buttons
-                  ...(quetions[_questionIndex]['answer'] as List<String>)
-                      .map((e) => Answer(
-                            selectHandler: answerChoosen,
-                            answerText: e.toString(),
-                          ))
-                      .toList()
-                ])
-              : const Center(
-                  child: Text(
-                    ("You done It"),
-                  ),
-                ),
+          body: _questionIndex < _quetions.length
+              ? Quiz(
+                  questionIndex: _questionIndex,
+                  questions: _quetions,
+                  answerChoosen: _answerChoosen)
+              : const Result(),
         ));
   }
 }
