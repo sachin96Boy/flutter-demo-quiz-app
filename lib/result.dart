@@ -28,6 +28,7 @@ class Result extends StatelessWidget {
           fontSize: 36.0,
           fontWeight: FontWeight.bold,
         ),
+        textAlign: TextAlign.center,
       ),
     );
   }
