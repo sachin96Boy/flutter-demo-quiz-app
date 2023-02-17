@@ -55,6 +55,13 @@ class _MyAppState extends State<MyApp> {
     // print("answer Given");
   }
 
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -81,7 +88,7 @@ class _MyAppState extends State<MyApp> {
                   questionIndex: _questionIndex,
                   questions: _quetions,
                   answerChoosen: _answerChoosen)
-              : Result(resultScore: _totalScore),
+              : Result(resultScore: _totalScore, resetAll: _resetQuiz),
         ));
   }
 }
