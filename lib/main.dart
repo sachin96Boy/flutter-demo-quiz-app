@@ -1,8 +1,7 @@
-import 'package:demo_app/answer.dart';
+import 'package:flutter/material.dart';
+
 import 'package:demo_app/quiz.dart';
 import 'package:demo_app/result.dart';
-import 'package:flutter/material.dart';
-import 'package:demo_app/question.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,29 +18,41 @@ class _MyAppState extends State<MyApp> {
   final _quetions = [
     {
       'questionText': "What's your favourite Colour?",
-      'answer': ['black', 'red', 'green', 'white']
+      'answer': [
+        {'type': 'black', 'score': 10},
+        {'type': 'red', 'score': 20},
+        {'type': 'green', 'score': 30},
+        {'type': 'white', 'score': 40}
+      ]
     },
     {
       'questionText': "What's yourFavourite Animal?",
-      'answer': ['Rabbit', 'snake', 'Elephant', 'lion']
+      'answer': [
+        {'type': 'rabit', 'score': 10},
+        {'type': 'snake', 'score': 20},
+        {'type': 'elephant', 'score': 30},
+        {'type': 'lion', 'score': 40}
+      ]
     },
     {
       'questionText': "What's your favourite Game",
       'answer': [
-        'Assassins Creed',
-        'Call of Duty',
-        'Hitman',
-        'Grand Theft Auto'
+        {'type': 'Assassins creed', 'score': 10},
+        {'type': 'Call of Duty', 'score': 20},
+        {'type': 'Hitman', 'score': 30},
+        {'type': 'Grand Theft Auto', 'score': 40}
       ]
     },
   ];
   var _questionIndex = 0;
+  var _totalScore = 0;
 
-  void _answerChoosen() {
+  void _answerChoosen(int score) {
+    _totalScore += score;
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
-    print("answer Given");
+    // print("answer Given");
   }
 
   // This widget is the root of your application.
@@ -70,7 +81,7 @@ class _MyAppState extends State<MyApp> {
                   questionIndex: _questionIndex,
                   questions: _quetions,
                   answerChoosen: _answerChoosen)
-              : const Result(),
+              : Result(resultScore: _totalScore),
         ));
   }
 }
