@@ -14,6 +14,25 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  var quetions = [
+    {
+      'questionText': "What's your favourite Colour?",
+      'answer': ['black', 'red', 'green', 'white']
+    },
+    {
+      'questionText': "What's yourFavourite Animal?",
+      'answer': ['Rabbit', 'snake', 'Elephant', 'lion']
+    },
+    {
+      'questionText': "What's your favourite Game",
+      'answer': [
+        'Assassins Creed',
+        'Call of Duty',
+        'Hitman',
+        'Grand Theft Auto'
+      ]
+    },
+  ];
   var _questionIndex = 0;
 
   void answerChoosen() {
@@ -26,25 +45,6 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var quetions = [
-      {
-        'questionText': "What's your favourite Colour?",
-        'answer': ['black', 'red', 'green', 'white']
-      },
-      {
-        'questionText': "What's yourFavourite Animal?",
-        'answer': ['Rabbit', 'snake', 'Elephant', 'lion']
-      },
-      {
-        'questionText': "What's your favourite Game",
-        'answer': [
-          'Assassins Creed',
-          'Call of Duty',
-          'Hitman',
-          'Grand Theft Auto'
-        ]
-      },
-    ];
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -63,31 +63,37 @@ class _MyAppState extends State<MyApp> {
           appBar: AppBar(
             title: const Text("Dummy Quiz App"),
           ),
-          body: Column(children: [
-            Question(
-                questionText:
-                    quetions[_questionIndex]['questionText'].toString()),
-            // comment out old buttons
-            // ElevatedButton(
-            //   onPressed: answerChoosen,
-            //   child: const Text("Answer 1"),
-            // ),
-            // ElevatedButton(
-            //   onPressed: answerChoosen,
-            //   child: const Text("Answer 2"),
-            // ),
-            // ElevatedButton(
-            //   onPressed: answerChoosen,
-            //   child: const Text("Answer 3"),
-            // ),
-            // // new buttons
-            ...(quetions[_questionIndex]['answer'] as List<String>)
-                .map((e) => Answer(
-                      selectHandler: answerChoosen,
-                      answerText: e.toString(),
-                    ))
-                .toList()
-          ]),
+          body: _questionIndex < quetions.length
+              ? Column(children: [
+                  Question(
+                      questionText:
+                          quetions[_questionIndex]['questionText'].toString()),
+                  // comment out old buttons
+                  // ElevatedButton(
+                  //   onPressed: answerChoosen,
+                  //   child: const Text("Answer 1"),
+                  // ),
+                  // ElevatedButton(
+                  //   onPressed: answerChoosen,
+                  //   child: const Text("Answer 2"),
+                  // ),
+                  // ElevatedButton(
+                  //   onPressed: answerChoosen,
+                  //   child: const Text("Answer 3"),
+                  // ),
+                  // // new buttons
+                  ...(quetions[_questionIndex]['answer'] as List<String>)
+                      .map((e) => Answer(
+                            selectHandler: answerChoosen,
+                            answerText: e.toString(),
+                          ))
+                      .toList()
+                ])
+              : const Center(
+                  child: Text(
+                    ("You done It"),
+                  ),
+                ),
         ));
   }
 }
